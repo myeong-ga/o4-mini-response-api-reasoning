@@ -8,9 +8,7 @@ interface WebSearchTool extends WebSearchConfig {
 export const getTools = () => {
   const {
     webSearchEnabled,
-    fileSearchEnabled,
     functionsEnabled,
-    vectorStore,
     webSearchConfig,
   } = useToolsStore.getState();
 
@@ -30,14 +28,6 @@ export const getTools = () => {
     }
 
     tools.push(webSearchTool);
-  }
-
-  if (fileSearchEnabled) {
-    const fileSearchTool = {
-      type: "file_search",
-      vector_store_ids: [vectorStore?.id],
-    };
-    tools.push(fileSearchTool);
   }
 
   if (functionsEnabled) {

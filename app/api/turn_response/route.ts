@@ -24,7 +24,7 @@ export async function POST(request: Request) {
     if (reasoningEnabled) {
       options.reasoning = { effort: "medium", summary: "auto" }
     }
-    
+    console.log("OpenAI options:", options)
     const events = await openai.responses.create(options)
 
     // Create a ReadableStream that emits SSE data as Uint8Array chunks

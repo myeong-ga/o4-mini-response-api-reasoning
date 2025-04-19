@@ -145,6 +145,7 @@ export const processMessages = async () => {
   const { reasoningEnabled } = useToolsStore.getState()
 
   const tools = getTools()
+  console.log("tools", tools)
 
   // Filter out reasoning items and any invalid message formats before sending to API
   const validConversationItems = conversationItems.filter((item) => {
