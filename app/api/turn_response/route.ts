@@ -22,7 +22,7 @@ export async function POST(request: Request) {
 
     // Add reasoning parameter if enabled
     if (reasoningEnabled) {
-      options.reasoning = { effort: "medium", summary: "detailed" }
+      options.reasoning = { effort: "medium", summary: "auto" }
     }
     
     const events = await openai.responses.create(options)
