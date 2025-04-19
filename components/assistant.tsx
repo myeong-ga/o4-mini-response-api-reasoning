@@ -8,11 +8,8 @@ import useToolsStore from "@/stores/useToolsStore"
 export default function Assistant() {
   const {
     chatMessages,
-    conversationItems,
     addConversationItem,
-    addChatMessage,
     setChatMessages,
-    setConversationItems,
   } = useConversationStore()
   const [isSubmitting, setIsSubmitting] = useState(false)
   const { reasoningEnabled } = useToolsStore()
