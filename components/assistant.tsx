@@ -26,24 +26,25 @@ export default function Assistant() {
     setIsSubmitting(true)
 
     try {
-      // 사용자 메시지 생성
+      // Optimistic UI
       const userItem: Item = {
         type: "message",
         role: "user",
         content: [{ type: "input_text", text: message.trim() }],
       }
 
+      // messages back and forth to server
       const userMessage: any = {
         role: "user",
         content: message.trim(),
       }
 
       // 사용자 메시지를 상태에 추가
-      addConversationItem(userMessage)
+      addConversationItem(userMessage);
 
-      // 사용자 메시지를 채팅 메시지에 추가하고 명시적으로 상태 업데이트
-      const updatedChatMessages = [...chatMessages, userItem]
-      setChatMessages(updatedChatMessages)
+      // 사용자 메시지를 채팅 메시지UI에 추가 , Optimistic UI 
+      const updatedChatMessages = [...chatMessages, userItem];
+      setChatMessages(updatedChatMessages);
 
       // API 호출 및 응답 처리
       await processMessages()
