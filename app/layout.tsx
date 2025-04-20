@@ -4,6 +4,7 @@ import type { Metadata } from "next"
 import { GeistMono } from "geist/font/mono"
 import { ThemeProvider } from "@/components/theme-provider"
 import { ModeToggle } from "@/components/mode-toggle"
+import { SyntaxThemeSelector } from "@/components/syntax-theme-selector"
 
 export const metadata: Metadata = {
   title: "Vercel AI Assistant",
@@ -18,7 +19,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div className="flex flex-col min-h-screen bg-background">
             <header className="sticky top-0 z-50 flex items-center justify-between w-full h-14 px-4 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
               <h1 className="text-lg font-semibold">o4-mini Reasoning summary 데모</h1>
-              <ModeToggle />
+              <div className="flex items-center gap-2">
+                <SyntaxThemeSelector />
+                <ModeToggle />
+              </div>
             </header>
             <main className="flex flex-col flex-1 items-center w-full">
               <div className="w-full max-w-3xl mx-auto">{children}</div>

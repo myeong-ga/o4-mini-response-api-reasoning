@@ -46,8 +46,21 @@ export async function POST(request: Request) {
     })
 
     // Create two branches of the stream: one for the client, one for logging
-    const [clientStream, ] = stream.tee()
+    //const [clientStream, ] = stream.tee()
 
+     // Create two branches of the stream: one for the client, one for logging
+     const [clientStream, logStream] = stream.tee()
+ 
+     // Asynchronously read from the logging branch and print each chunk
+     const reader = logStream.getReader()
+     ;(async () => {
+       const decoder = new TextDecoder()
+       while (true) {
+         const { value, done } = await reader.read()
+         if (done) break
+         console.log(decoder.decode(value)) // now `value` is Uint8Array
+       }
+     })()
 
 
     // Return the client branch as the SSE response

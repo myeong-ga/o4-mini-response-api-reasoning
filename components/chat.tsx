@@ -49,6 +49,7 @@ const Chat: React.FC<ChatProps> = ({ items, onSendMessage, isSubmitting }) => {
     <div className="flex flex-col h-full">
       <div className="flex-1 overflow-y-auto p-4">
         {!hasMessages ? (
+        
           <div className="flex flex-col items-center justify-center h-full text-center px-4">
             <h2 className="text-2xl font-semibold mb-2">OpenAI o3 and o4-mini Thinking</h2>
             <p className="text-muted-foreground mb-8">Built-in Web search with Response API</p>
