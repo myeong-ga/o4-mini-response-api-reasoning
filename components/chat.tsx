@@ -5,15 +5,9 @@ import ToolCall from "./tool-call"
 import Message from "./message"
 import Reasoning from "./reasoning"
 import Annotations from "./annotations"
-import { Lightbulb, Loader2, Send, Settings } from "lucide-react"
+import { Loader2, Send } from "lucide-react"
 import type { Item, ReasoningItem } from "@/lib/assistant"
 import useToolsStore from "@/stores/useToolsStore"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuCheckboxItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
 
 interface ChatProps {
   items: Item[]
@@ -27,7 +21,7 @@ const Chat: React.FC<ChatProps> = ({ items, onSendMessage, isSubmitting }) => {
   // This state is used to provide better user experience for non-English IMEs such as Japanese
   const [isComposing, setIsComposing] = useState(false)
 
-  const { reasoningEnabled, setReasoningEnabled } = useToolsStore()
+  const { reasoningEnabled } = useToolsStore()
 
   const scrollToBottom = () => {
     itemsEndRef.current?.scrollIntoView({ behavior: "instant" })
@@ -99,20 +93,6 @@ const Chat: React.FC<ChatProps> = ({ items, onSendMessage, isSubmitting }) => {
             disabled={isSubmitting}
           />
           <div className="absolute right-3 top-3 flex items-center gap-2">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <button className="p-1 rounded-md text-muted-foreground hover:text-foreground" disabled={isSubmitting}>
-                  <Settings size={18} />
-                </button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" alignOffset={-10} sideOffset={5}>
-                <DropdownMenuCheckboxItem checked={reasoningEnabled} onCheckedChange={setReasoningEnabled}>
-                  <Lightbulb className="mr-2 h-4 w-4" />
-                  <span>AI 추론 과정 표시</span>
-                </DropdownMenuCheckboxItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-
             <button
               disabled={!inputMessageText.trim() || isSubmitting}
               className="p-1 rounded-md text-muted-foreground hover:text-foreground disabled:opacity-40"

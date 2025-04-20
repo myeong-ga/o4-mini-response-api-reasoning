@@ -38,14 +38,12 @@ const useToolsStore = create<StoreState>()(
         },
       },
     
-      previousFileSearchEnabled: false,
-    
-      webSearchEnabled: true,
+      webSearchEnabled: false,
       setWebSearchEnabled: (enabled) => {
         set({ webSearchEnabled: enabled })
       },
-      functionsEnabled: true,
-      previousFunctionsEnabled: true,
+      functionsEnabled: false,
+      previousFunctionsEnabled: false,
       setFunctionsEnabled: (enabled) => {
         set({ functionsEnabled: enabled })
       },

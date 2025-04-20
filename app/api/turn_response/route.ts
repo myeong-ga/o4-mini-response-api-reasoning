@@ -4,7 +4,7 @@ import OpenAI from "openai"
 
 export async function POST(request: Request) {
   try {
-    const { messages, tools, reasoningEnabled } = await request.json()
+    const { messages, reasoningEnabled } = await request.json()
    
     console.log("Received messages:", messages)
 
@@ -14,17 +14,17 @@ export async function POST(request: Request) {
     const options: any = {
       model: MODEL,
       input: messages,
-      tools,
+      //tools,
       stream: true,
-      parallel_tool_calls: false,
-      max_output_tokens: 23000,
+      //parallel_tool_calls: false,
+      max_output_tokens: 8000,
     }
 
     // Add reasoning parameter if enabled
     if (reasoningEnabled) {
-      options.reasoning = { effort: "medium", summary: "auto" }
+      options.reasoning = { effort: "low", summary: "auto" }
     }
-    console.log("OpenAI options:", options)
+    console.log("responses api options:", options)
     const events = await openai.responses.create(options)
 
     // Create a ReadableStream that emits SSE data as Uint8Array chunks

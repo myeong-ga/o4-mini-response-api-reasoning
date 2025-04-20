@@ -12,15 +12,13 @@ export default function Assistant() {
     setChatMessages,
   } = useConversationStore()
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const { reasoningEnabled  , setWebSearchEnabled} = useToolsStore()
+  const { reasoningEnabled } = useToolsStore()
 
   // Re-render when reasoning setting changes
   useEffect(() => {
     // This empty effect will cause a re-render when reasoningEnabled changes
   }, [reasoningEnabled])
-  useEffect(() => {
-    setWebSearchEnabled(true)
-  }, [])
+
 
   const handleSendMessage = async (message: string) => {
     if (!message.trim()) return

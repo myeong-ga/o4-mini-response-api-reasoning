@@ -10,7 +10,7 @@ interface ReasoningProps {
 }
 
 export default function Reasoning({ reasoning }: ReasoningProps) {
-  const [isExpanded, setIsExpanded] = useState(false)
+  const [isExpanded, setIsExpanded] = useState(true)
   const { reasoningEnabled } = useToolsStore()
 
   // Reset expanded state when reasoning is toggled off and on
